@@ -2,12 +2,12 @@
 import json
 
 
-def read_credentials(filename):
+def read_credentials():
     """reads credentials from file."""
-    with open(filename, 'r') as token:
+    with open('auth.json', 'r') as token:
         credentials = json.load(token)
     return credentials
 
 
-C = read_credentials('auth.json')
+C = read_credentials()
 print(C)
