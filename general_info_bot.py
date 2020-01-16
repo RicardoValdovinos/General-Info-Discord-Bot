@@ -7,7 +7,7 @@ CLIENT = discord.Client()
 WEATHER_API = OpenWeatherMapAPI()
 
 
-def read_credentials():
+def read_auth_token():
     """reads credentials from file."""
     with open('auth.json', 'r') as token:
         credentials = json.load(token)
@@ -26,7 +26,7 @@ async def on_message(message):
 
     if message.content.startswith('!weather'):
         msg = message.content.split(' ')
-        await message.channel.send(f'{msg[1]}')
+        await message.channel.send(await WEATHER_API.get_weather(msg))
 
 
-CLIENT.run(read_credentials()['discord_auth_token'])
+CLIENT.run(read_auth_token()['discord_auth_token'])
