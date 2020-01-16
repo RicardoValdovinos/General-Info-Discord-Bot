@@ -1,9 +1,10 @@
 """Discord bot."""
 import json
 import discord
-
+from open_weather_map import OpenWeatherMapAPI
 
 CLIENT = discord.Client()
+WEATHER_API = OpenWeatherMapAPI()
 
 
 def read_credentials():
