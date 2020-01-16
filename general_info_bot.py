@@ -3,15 +3,16 @@ import json
 import discord
 from open_weather_map import OpenWeatherMapAPI
 
-CLIENT = discord.Client()
-WEATHER_API = OpenWeatherMapAPI()
-
 
 def read_auth_token():
     """reads credentials from file."""
     with open('auth.json', 'r') as token:
         credentials = json.load(token)
     return credentials
+
+
+CLIENT = discord.Client()
+WEATHER_API = OpenWeatherMapAPI(read_auth_token()['open_weather_api_key'])
 
 
 @CLIENT.event
