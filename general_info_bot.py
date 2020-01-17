@@ -27,7 +27,31 @@ async def on_message(message):
 
     if message.content.startswith('!weather'):
         msg = message.content.split(' ')
-        await message.channel.send(await WEATHER_API.get_weather(msg))
+        if len(msg) == 1:
+            await message.channel.send(help_menu())
+        else:
+            if msg[1] == 'help':
+                await message.channel.send(help_menu())
+            else:
+                await message.channel.send(await WEATHER_API.get_weather(msg))
+
+
+def help_menu():
+    return '''
+```Hello!
+
+If you want to use the !weather command make sure to use it as shown
+below:
+    !weather <zip_code>
+    !weather <city_name>
+    !weather <latitude> <longitude>
+
+Examples:
+    !weather 85032 
+    !weather phoenix
+    !weather 33 -112 
+```
+'''
 
 
 CLIENT.run(read_auth_token()['discord_auth_token'])
