@@ -23,6 +23,12 @@ def parse_zip_code(zip_code):
     return '?zip=' + zip_code
 
 
+def parse_zip_code_country_code(zip_code, country_code):
+    if country_code.isdigit():
+        syntax_error()
+    return parse_zip_code + ',' + country_code
+
+
 def parse_city(city_name):
     full_city_name = ''
     for city in city_name:
@@ -31,6 +37,12 @@ def parse_city(city_name):
         else:
             syntax_error()
     return '?q=' + full_city_name
+
+
+def parse_city_name_country_code(city_name, country_code):
+    if country_code.isdigit():
+        syntax_error()
+    return parse_city + ',' + country_code
 
 
 def parse_coordinates(coords):
